@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.classless.min.css" type="text/css">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Ver productos</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/index.html">Consultar todos</a></li>
+                <li><a href="/consultar.html">Consultar por ID</a></li>
+                <li><a href="/crear.html">Crear</a></li>
+                <li><a href="/modificar.html">Modificar</a></li>
+                <li><a href="/eliminar.html">Eliminar</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Listado de productos</h1>
+        <hr>
+
+        <section id="section-products"></section>
+
+    </main>
+</body>
+
+
+<script>
+    let contenedorProductos = document.getElementById('section-products');
+    let url = "http://localhost:3000";
+
+    async function obtenerProductos() {
+        try {
+            let response = await fetch(`${url}/products`);
+
+            let data = await response.json();
+            let productos = data.payload;
+
+            console.table(productos);
+
+            mostrarProductos(productos);
+
+        } catch (error) {
+            console.log('Error obteniendo productos', error);
+        }
+    }
+
+
+    function mostrarProductos(array) {
+        let htmlProductos = "";
+
+        array.forEach(producto => {
+            htmlProductos += `
+            <div class="card-producto">
+                <img src="${producto.image}" alt="${producto.name}">
+                <h3>${producto.name}</h3>
+                <p>Id: ${producto.id}</p>
+                <p>$${producto.price}</p>
+            </div>
+        `
+        });
+
+        contenedorProductos.innerHTML = htmlProductos;
+    }
+
+    function init() {
+        obtenerProductos();
+    }
+
+    init();
+</script>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.classless.min.css" type="text/css">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Ver productos</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/index.html">Consultar todos</a></li>
+                <li><a href="/consultar.html">Consultar por ID</a></li>
+                <li><a href="/crear.html">Crear</a></li>
+                <li><a href="/modificar.html">Modificar</a></li>
+                <li><a href="/eliminar.html">Eliminar</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+
+        <h1>Listado de productos</h1>
+        <hr>
+
+        <form id="getProduct">
+            <label for="IdProduct">Id del producto</label>
+            <input type="text" name="IdProduct" id="IdProduct" required>
+            <input type="submit" value="Consultar producto">
+        </form>
+
+        <section id="section-products">
+        </section>
+
+    </main>
+</body>
+
+
+<script>
+    // Selección de elementos del DOM.
+    let contenedorProductos = document.getElementById('section-products');
+    let getProduct = document.getElementById('getProduct');
+    let url = "http://localhost:3000";
+
+    getProduct.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevenimos el envio por defecto del formulario.
+
+        // Tenemos que obtener los datos del formulario, por lo tanto, vamos a crear un objeto FormData a partir de los datos del formulario.
+        let formData = new FormData(event.target); //Creamos un nuevo objeto FormData a partir de los datos del formulario
+
+        console.log(formData); // FormData { idProd → "2" }
+        // Ojo, esto no se muestra en navegadores basados en Chromium
+
+        // Transformamos a objetos JS los valores de FormData
+        let data = Object.fromEntries(formData.entries());
+        console.log(data); // { idProd: '2' }
+
+        console.log(data);
+        let idProd = data.IdProduct; // Ahora ya tenemos guardado en una variable el valor del campo del formulario
+        console.log(idProd);
+
+        console.log(`Realizando una peticion GET a la url ${url}/products/${idProd}`);
+
+        // Enviamos en una peticion GET el id pegado a la url
+        let response = await fetch(`${url}/products/${idProd}`);
+
+        let datos = await response.json();
+
+        if (response.ok) {
+            // Extraemos de la respuesta payload, el primer resultado que contiene el objeto que consultamos
+            let producto = datos.payload[0];
+            console.log(producto);
+
+            mostrarProducto(producto);
+
+
+        } else {
+            console.log(datos);
+            console.log(datos.message);
+
+            mostrarError(datos.message);
+        }
+
+
+    });
+
+    function mostrarProducto(producto) {
+        let htmlProducto = `
+                    <div class="producto">
+                            <img class="producto-img" src="${producto.image}" alt="${producto.name}">
+                            <p>Id: ${producto.id} / Nombre: ${producto.name} / <strong>Precio: ${producto.price}</strong></p>
+                    </div>
+                `;
+
+        contenedorProductos.innerHTML = htmlProducto;
+    }
+
+
+    function mostrarError(message) {
+        contenedorProductos.innerHTML = `
+                <div class="mensaje-error">
+                    <p>
+                        <strong>Error:</strong>
+                        <span>${message}</span>
+                    </p>
+                </div>
+            `;
+    }
+
+</script>
+
+</html>
