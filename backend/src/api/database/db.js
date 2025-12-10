@@ -2,7 +2,7 @@
 import mysql from "mysql2/promise";
 
 // Importar el archivo environments. guarda las variables de configuración, como usuario, contraseña, host, nombre de la base de datos, etc. Esto sirve para no escribir los datos sensibles directamente en el código.
-import environments from "../api/config/environments.js";
+import environments from "../config/environments.js";
 
 const { database } = environments;
 
