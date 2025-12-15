@@ -1,5 +1,4 @@
 // Creamos un servidor base con Express.js
-
 import express from "express";
 import environments from "./src/api/config/environments.js";
 import cors from "cors";
@@ -10,6 +9,13 @@ const PORT = environments.port;
 // Middlewares
 app.use(cors()); // middleware básico que permite todas las solicitudes.
 app.use(express.json()); // Middleware para parsear JSON en el body.
+
+
+// Configuramos EJS como motor de plantillas
+app.set("view engine", "ejs");
+
+// Definimos la ruta donde estan almacenadas las plantillas .ejs, con join combinamos el directorio raiz del proyecto con src/views
+app.set("views", join(__dirname, "src/views"));
 
 // ENDPOINTS
 // Get -> traer todos los productos de la base de datos.
@@ -24,6 +30,7 @@ app.delete("/products/:id", removeProduct);
 
 app.put("/products", modifyProduct);
 
+app.use("/dashboard", viewRoutes);
 
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);

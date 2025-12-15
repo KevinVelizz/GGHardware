@@ -1,20 +1,16 @@
 import Products from "../models/product.models.js";
 
-
 // Get de los productos
 export const getAllProducts = async (req, res) => {
 
     // 1. Manejamos la lógica dentro de un try catch para evitar que rompa el programa en caso de algún error al traer los productos.
-
     try {
 
         // Al usar [rows] la desestructuración extrae directamente las filas(que es el primer elemento del resultado de la consulta), nos sirve porque hace el código más legible y explicito.
         const [rows] = await Products.selectAllProducts();
 
-
         // 2. Optimización.
         // Devolvemos el texto plano JSON con toda la información de los productos. 
-
         if (rows.length === 0) {
             return res.status(404).json({
                 ok: false,
@@ -44,7 +40,6 @@ export const getAllProducts = async (req, res) => {
 // Get de los productos por ID.
 export const getProductById = async (req, res) => {
     try {
-
         // Obtenemos el ID de la consulta(req).
         const { id } = req.params;
 
@@ -176,7 +171,6 @@ export const modifyProduct = async (req, res) => {
 }
 
 // Eliminar producto 
-
 export const removeProduct = async (req, res) => {
 
     try {
@@ -202,8 +196,6 @@ export const removeProduct = async (req, res) => {
             ok: true,
             message: "Producto eliminado correctamente"
         });
-
-
     } catch (error) {
 
         console.error("DB Error in removeProduct: ", error.message);

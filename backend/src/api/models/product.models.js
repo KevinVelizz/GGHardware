@@ -46,7 +46,6 @@ const deleteProduct = async (id) => {
     return await connection.query(sql, [id]);
 }
 
-
 export default {
     selectAllProducts,
     selectProductFromId,
