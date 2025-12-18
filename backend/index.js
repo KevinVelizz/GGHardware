@@ -2,7 +2,9 @@
 import express from "express";
 import environments from "./src/api/config/environments.js";
 import cors from "cors";
-import { createNewProduct, getAllProducts, getProductById, modifyProduct, removeProduct } from "./src/api/controllers/product.controllers.js";
+import { productRoutes, viewRoutes } from "./src/api/routes/index.js";
+import { join, __dirname } from "./src/api/utils/index.js";
+
 const app = express();
 const PORT = environments.port;
 
@@ -19,16 +21,7 @@ app.set("views", join(__dirname, "src/views"));
 
 // ENDPOINTS
 // Get -> traer todos los productos de la base de datos.
-app.get("/products", getAllProducts);
-
-// Get product by ID -> Consultar producto por su ID.
-app.get("/products/:id", getProductById);
-
-app.post("/products", createNewProduct);
-
-app.delete("/products/:id", removeProduct);
-
-app.put("/products", modifyProduct);
+app.use("/api/products", productRoutes); // Rutas productos
 
 app.use("/dashboard", viewRoutes);
 

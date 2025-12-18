@@ -1,9 +1,8 @@
 import Products from "../models/product.models.js";
 
-export const vistaListado = async (req, res) => {
+export const viewProductList = async (req, res) => {
 
     try {
-
         const respuestaProductos = await Products.selectAllProducts();
 
         res.render("index", {
@@ -16,26 +15,26 @@ export const vistaListado = async (req, res) => {
     }
 }
 
-export const vistaConsultarId = (req, res) => {
+export const viewGetProductById = (req, res) => {
     res.render("read", {
         title: "Consultar productos por id"
-    })
+    });
 }
 
-export const vistaCrear = (req, res) => {
+export const viewCreateProduct = (req, res) => {
     res.render("create", {
         title: "Crear productos"
-    })
+    });
 }
 
-export const vistaModificar = (req, res) => {
+export const viewUpdateProduct = (req, res) => {
     res.render("update", {
         title: "Modificar productos"
-    })
+    });
 }
 
-export const vistaEliminar = (req, res) => {
+export const viewDeleteProduct = (req, res) => {
     res.render("delete", {
         title: "Eliminar productos"
-    })
+    });
 }
