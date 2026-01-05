@@ -22,11 +22,11 @@ function insertProducts(list) {
     list.forEach(product => {
 
         htmlList += `
-                <div class="card">
+                <div class="card product" data-product-id="${product.id}">
                     <img src="${product.image}" alt="imagen del producto">
                     <p class="card-name">${product.name}</p>
                     <p class="card-price">$${product.price}</p>
-                    <button id="${product.id}" class="btn"><ion-icon name="cart-outline"></ion-icon>Agregar al carrito</button>
+                    <button class="btn"><ion-icon name="cart-outline"></ion-icon>Agregar al carrito</button>
                 </div>`;
     });
 
@@ -35,21 +35,35 @@ function insertProducts(list) {
 
 insertProducts(products);
 
-const btn = document.getElementsByClassName('btn');
-
-for(const boton of btn) {
-    boton.addEventListener('click', addCart);
-}
+const productsCart = document.querySelectorAll('.product');
 
 
-function addCart(event) {
-    console.log(event.target.id);
+// Opción 1. evento en el button.
 
-    const prod = products.find(p => p.id == event.target.id);
+// for(const prod of productsCart) {
 
-    cart.push(prod);
+//     const prodId = prod.dataset.productId;
 
-    console.log(cart);
-}
+//     const button = prod.getElementsByClassName("btn").item(0);
 
+//     button.addEventListener('click', ()=> {
+
+//         console.log(prodId);
+//     });
+// }
+
+// Opción 2. Delegación de eventos. 
+
+listProducts.addEventListener('click', (e) => {
+
+    console.log(e.target);
+
+    const button = e.target.closest('.btn');
+    if (!button) return;
+
+    const product = button.closest('.product');
+    const productId = product.dataset.productId;
+
+    console.log(productId);
+});
 
