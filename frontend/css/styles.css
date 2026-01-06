@@ -66,24 +66,55 @@ li {
 /* HEADER */
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem 4rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1rem 4rem;
     background-color: var(--bg-secondary);
 }
 
 .logo-img {
     border: none;
     border-radius: 100%;
-    width: 13rem;
+    width: 12rem;
+}
+
+.container-search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 1rem;
+}
+
+.form-search {
+    height: 4rem;
+    width: 30rem;
+}
+
+.icon-search {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.input-search {
+    height: 100%;
+    width: 100%;
+    border-radius: 2rem;
+    padding: 1rem;
+    background-color: var(--text-color);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .nav-links {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    column-gap: 2rem;
+    gap: 2rem;
 }
 
 .icon-cart {
@@ -133,7 +164,15 @@ header {
     font-weight: 700;
 }
 
-.btn {
+/* BTNS */
+
+.container-btns {
+    display: flex;
+    margin: 4rem 0 2rem 0;
+    column-gap: 2rem;
+}
+
+.btn, .btn-order {
     border: none;
     background-color: #f0320a;
     padding: 1.2rem 5rem;
@@ -143,12 +182,17 @@ header {
     font-weight: 700;
     display: flex;
     align-items: center;
-
+    cursor: pointer;
 }
 
 .btn ion-icon {
     font-weight: 700;
     font-size: 1.4rem;
+}
+
+.btn-order {
+    background-color: rgb(20, 138, 20);
+    padding: 1.2rem 2rem;
 }
 
 /* FOOTER */
