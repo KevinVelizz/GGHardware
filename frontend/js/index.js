@@ -3,9 +3,14 @@ let cart = [];
 let listFilterProducts = [];
 const listProducts = document.getElementById('list-products');
 const btnOrderPrice = document.getElementById('order-price');
+const badge = document.getElementById('cart-badge');
+const dropdown = document.getElementById('cart-dropdown');
+const itemsList = document.getElementById('cart-items');
+const cartBtn = document.getElementById('cart-btn');
 
-////////////////////////////////
-// Obtener productos////////////
+
+///////////////////////////
+// get products////////////
 const url = "http://localhost:3000/api/products"; // Guardamos en una variable la url de nuestro endpoint
 
 
@@ -40,6 +45,7 @@ function insertProducts(list) {
                 <div class="card product" data-product-id="${product.id}">
                     <img src="http://localhost:3000/img/${product.image}" alt="imagen del producto">
                     <p class="card-name">${product.name}</p>
+                    <p class="card-description">${product.description}</p>
                     <p class="card-price">$${product.price}</p>
                     <button class="btn"><ion-icon name="cart-outline"></ion-icon>Agregar al carrito</button>
                 </div>`;
@@ -79,13 +85,99 @@ listProducts.addEventListener('click', (e) => {
     // console.log(typeof(productId));
 
     const productSelect = products.find(p => p.id == productId);
-
-    // console.log(productSelect);
-
-    cart.push(productSelect);
-
-    console.log(cart);
+    
+    addToCart(productSelect);
 });
+
+
+function addToCart(product) {
+    const item = cart.find(p => p.id === product.id);
+
+    if (item) {
+        if (item.quantity < product.stock) {
+        item.quantity++;
+        }
+    } else {
+        cart.push({
+        ...product,
+        quantity: 1
+        });
+    }
+
+    renderCart();
+    console.log(cart);
+}
+
+function decreaseProduct(productId) {
+    const item = cart.find(p => p.id === productId);
+    if (!item) return;
+
+    if (item.quantity > 1) {
+        item.quantity--;
+    } else {
+        cart = cart.filter(p => p.id !== productId);
+    }
+
+    renderCart();
+}
+
+function renderCart() {
+    itemsList.innerHTML = '';
+
+    if (cart.length === 0) {
+        itemsList.innerHTML = `
+        <li class="empty-cart">Carrito vacío</li>
+        `;
+        badge.textContent = 0;
+        return;
+    }
+
+    // badge = total de unidades
+    badge.textContent = cart.reduce((acc, p) => acc + p.quantity, 0);
+    badge.style.display = 'flex';
+
+    cart.forEach(p => {
+        const li = document.createElement('li');
+        li.classList.add('cart-item');
+
+        li.innerHTML = `
+            <img src="http://localhost:3000/img/${p.image}" alt="${p.name}">
+            <span class="cart-name">${p.name}</span>
+            <span class="cart-price">$${p.price}</span>
+        
+            <div class="cart-controls">
+                <button class="btn-decrease">−</button>
+                <span class="cart-qty">${p.quantity}</span>
+                <button class="btn-increase">+</button>
+            </div>
+        `;
+
+        
+        li.querySelector('.btn-increase').addEventListener('click', () => {
+        addToCart(p);
+        });
+
+   
+        li.querySelector('.btn-decrease').addEventListener('click', () => {
+        decreaseProduct(p.id);
+        });
+
+        itemsList.appendChild(li);
+    });
+}
+
+function decreaseProduct(productId) {
+  const item = cart.find(p => p.id === productId);
+  if (!item) return;
+
+  if (item.quantity > 1) {
+    item.quantity--;
+  } else {
+    cart = cart.filter(p => p.id !== productId);
+  }
+
+  renderCart();
+}
 
 
 ////////////////////////////////////////
@@ -141,6 +233,16 @@ function sortProducts({ buttonId, key, order = 'asc' }) {
         insertProducts(list);
     });
 }
+
+
+
+
+
+
+cartBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  dropdown.classList.toggle('hidden');
+});
 
 function init() {
     getProducts();

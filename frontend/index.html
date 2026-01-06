@@ -28,7 +28,17 @@
             <ul class="nav-links">
                 <li><a href="">Inicio</a></li>
                 <li><a href="productos">Productos</a></li>
-                <li><a href=""><ion-icon class="icon-cart" name="cart"></ion-icon></a></li>
+                <li class="cart-container">
+                    <a href="#" id="cart-btn">
+                        <ion-icon class="icon-cart" name="cart"></ion-icon>
+                        <span id="cart-badge" class="cart-badge">0</span>
+                    </a>
+
+                    <div id="cart-dropdown" class="cart-dropdown hidden">
+                        <p class="cart-title">Carrito</p>
+                        <ul id="cart-items"></ul>
+                    </div>
+                </li>
             </ul>
         </nav>
     </header>

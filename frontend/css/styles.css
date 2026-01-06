@@ -121,6 +121,86 @@ nav {
     font-size: 2.8rem;
 }
 
+.cart-container {
+    position: relative;
+}
+
+/* count */
+.cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -9px;
+    background: red;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    display: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Dropdown */
+.cart-dropdown {
+    position: absolute;
+    top: 3.6rem;
+    right: 0;
+    width: 26rem;
+    background: var(--bg-secondary);
+    box-shadow: 0 6px 12px rgba(0,0,0,.15);
+    padding: 1rem;
+    z-index: 1000;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    color: white;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: #0a263a;
+    border-radius: 1rem;
+}
+
+.cart-item img {
+    width: 5rem;
+    height: 5rem;
+    object-fit: contain;
+}
+
+.cart-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cart-controls button {
+    width: 2.4rem;
+    height: 2.4rem;
+    border: none;
+    background: #e53935;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 1rem;
+    color: #777;
+}
+
 /* MAIN */
 
 .title {
@@ -160,8 +240,13 @@ nav {
     font-weight: 400;
 }
 
+.card-description {
+    font-weight: 400;
+}
+
 .card-price {
     font-weight: 700;
+    font-size: 1.8rem;
 }
 
 /* BTNS */
@@ -171,6 +256,8 @@ nav {
     margin: 4rem 0 2rem 0;
     column-gap: 2rem;
 }
+
+
 
 .btn, .btn-order {
     border: none;
@@ -183,6 +270,10 @@ nav {
     display: flex;
     align-items: center;
     cursor: pointer;
+}
+
+.cart-controls .btn-increase {
+    background-color: rgb(20, 138, 20);
 }
 
 .btn ion-icon {
