@@ -1,18 +1,34 @@
-let products = [
-    {id: 1, name: "placa de video", price: 500, description: "Nvidia GTX 1660 TI", image: "./img/logo.png"},
-    {id: 2, name: "procesador", price: 200, description: "Intel Core i7 9300", image: "./img/logo.png"},
-    {id: 3, name: "monitor", price: 100, description: "24 pulgadas", image: "./img/logo.png"},
-    {id: 4, name: "memoria ram", price: 1500, description: "corsair 3200mhz 16gb", image: "./img/logo.png"},
-    {id: 5, name: "teclado", price: 5300, description: "teclado 9z mecanico", image: "./img/logo.png"},
-    {id: 6, name: "mouse", price: 400, description: "mouse logitech inalambrico", image: "./img/logo.png"},
-    {id: 7, name: "parlante", price: 8800, description: "genius", image: "./img/logo.png"},
-    {id: 8, name: "mouse pad", price: 4300, description: "mouse pad 1m x 1m", image: "./img/logo.png"},
-]
-
+let products = [];
 let cart = [];
-let listFilterProducts = [...products];
+let listFilterProducts = [];
 const listProducts = document.getElementById('list-products');
 const btnOrderPrice = document.getElementById('order-price');
+
+////////////////////////////////
+// Obtener productos////////////
+const url = "http://localhost:3000/api/products"; // Guardamos en una variable la url de nuestro endpoint
+
+
+async function getProducts() {
+    try {
+
+        const result = await fetch(url); // Hacemos una peticion a nuestro endpoint en http://localhost:3000/api/products
+
+        const data = await result.json();
+
+        console.log(data); // Nuestros productos estan disponibles dentro de payload { payload: }
+        
+        if(data.ok) {
+            products = data.payload;
+            insertProducts(products);
+            listFilterProducts = [...products];
+        }
+
+    }catch(error) {
+
+        console.error(error);
+    }
+}
 
 function insertProducts(list) {
 
@@ -22,7 +38,7 @@ function insertProducts(list) {
 
         htmlList += `
                 <div class="card product" data-product-id="${product.id}">
-                    <img src="${product.image}" alt="imagen del producto">
+                    <img src="http://localhost:3000/img/${product.image}" alt="imagen del producto">
                     <p class="card-name">${product.name}</p>
                     <p class="card-price">$${product.price}</p>
                     <button class="btn"><ion-icon name="cart-outline"></ion-icon>Agregar al carrito</button>
@@ -127,6 +143,7 @@ function sortProducts({ buttonId, key, order = 'asc' }) {
 }
 
 function init() {
+    getProducts();
     insertProducts(listFilterProducts); 
     sortProducts({buttonId: 'order-name', key: 'name', order: 'asc'});
     sortProducts({buttonId: 'order-price', key: 'price', order: 'desc'});

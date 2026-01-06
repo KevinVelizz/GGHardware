@@ -8,7 +8,7 @@ const loggerUrl = (req, res, next) => {
 ////////////////////////
 // Middleware de ruta -> Aplicados a rutas especificas y ejecutadas solo cuando una solicitud coincide con la ruta definida
 const validateId = (req, res, next) => {
-    const id = req.params.id; // o tambine, mas optimo const { id } = req.params;
+    const id = req.params.id; // o también, mas optimo const { id } = req.params;
 
     if (!id || isNaN(id)) {
         return res.status(400).json({
@@ -16,7 +16,7 @@ const validateId = (req, res, next) => {
         });
     }
 
-    // Convertimos el parametro id (originalmente un string porque viene de la url) en un enttero decimal
+    // Convertimos el parametro id (originalmente un string porque viene de la url) en un entero decimal
     req.id = parseInt(id, 10);
 
     next();

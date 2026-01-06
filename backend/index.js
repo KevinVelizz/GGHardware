@@ -1,4 +1,4 @@
-// Creamos un servidor base con Express.js
+// Creamos un servidor base con Express.js.
 import express from "express";
 import environments from "./src/api/config/environments.js";
 import cors from "cors";
@@ -13,15 +13,18 @@ app.use(cors()); // middleware básico que permite todas las solicitudes.
 app.use(express.json()); // Middleware para parsear JSON en el body.
 
 
-// Configuramos EJS como motor de plantillas
+// Configuramos EJS como motor de plantillas.
 app.set("view engine", "ejs");
 
-// Definimos la ruta donde estan almacenadas las plantillas .ejs, con join combinamos el directorio raiz del proyecto con src/views
+// Definimos la ruta donde estan almacenadas las plantillas .ejs, con join combinamos el directorio raiz del proyecto con src/views.
 app.set("views", join(__dirname, "src/views"));
+
+app.use('/img', express.static(join(__dirname, 'src/public/img')));
+app.use('/css', express.static(join(__dirname, 'src/public/css')));
 
 // ENDPOINTS
 // Get -> traer todos los productos de la base de datos.
-app.use("/api/products", productRoutes); // Rutas productos
+app.use("/api/products", productRoutes); // Rutas productos.
 
 app.use("/dashboard", viewRoutes);
 

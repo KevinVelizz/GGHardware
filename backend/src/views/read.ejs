@@ -1,27 +1,27 @@
 <%- include("partials/head") %>
     <%- include("partials/nav") %>
 
-        <hr>
-        <h1 class="title">
-            <%= title %>
-        </h1>
-        <hr>
+    <hr>
+    <h1 class="title">
+        <%= title %>
+    </h1>
+    <hr>
 
-        <main id="container">
-            <div id="products-container">
-                <h2>Consultar producto</h2>
-                <form id="getProduct-form">
-                    <label for="id">Id producto</label>
-                    <input type="number" name="id" id="id">
-                    <input type="submit" value="Consultar producto">
-                </form>
-            </div>
+    <main id="container">
+        <div id="products-container">
+            <h2>Consultar producto</h2>
+            <form id="getProduct-form">
+                <label for="id">Id producto</label>
+                <input type="number" name="id" id="id">
+                <input type="submit" value="Consultar producto">
+            </form>
+        </div>
 
-            <div id="getId-container">
-                <ul id="getId-list"></ul>
-            </div>
-        </main>
+        <div id="getId-container">
+            <ul id="getId-list"></ul>
+        </div>
+    </main>
 
-        <script src="/js/read.js"></script>
+    <script src="/js/read.js"></script>
 
-        <%- include("partials/footer") %>
+    <%- include("partials/footer") %>
