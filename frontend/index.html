@@ -26,8 +26,12 @@
 
         <nav>
             <ul class="nav-links">
-                <li><a href="">Inicio</a></li>
-                <li><a href="productos">Productos</a></li>
+                <li class="user-name"></li>
+                <li class="menu-mobile-btn">
+                    <ion-icon id="menu-btn" name="menu-outline"></ion-icon>
+                </li>
+                <li class="nav-link"><a href="#">Inicio</a></li>
+                <li class="nav-link"><a href="#">Productos</a></li>
                 <li class="cart-container">
                     <a href="#" id="cart-btn">
                         <ion-icon class="icon-cart" name="cart"></ion-icon>
@@ -35,10 +39,20 @@
                     </a>
 
                     <div id="cart-dropdown" class="cart-dropdown hidden">
-                        <p class="cart-title">Carrito</p>
+
+                        <p class="total"></p>
+
                         <ul id="cart-items"></ul>
+
+                        <div class="container-button-cart">
+                            <button class="btn-empty-cart"><ion-icon class="icon-trash" name="trash-outline"></ion-icon></button>
+
+                            <button class="btn-finish-buy">Finalizar la compra</button>
+                        </div>  
                     </div>
                 </li>
+
+                
             </ul>
         </nav>
     </header>
@@ -63,8 +77,53 @@
         <p class="text-copy">&copy; Todos los derechos reservados 2025</p>
     </footer>
 
+
+
+    <!-- MODAL NOMBRE -->
+    <div
+        id="name-modal"
+        class="modal-overlay"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
+    >
+        <form id="name-form" class="modal">
+            <h2 id="modal-title">¡Bienvenido!</h2>
+            <p id="modal-description">
+                Ingresá tu nombre para continuar
+            </p>
+
+            <input
+                id="username-input"
+                type="text"
+                required
+                autocomplete="off"
+                placeholder="Tu nombre"
+                aria-label="Nombre"
+            >
+
+            <button type="submit">Ingresar</button>
+
+            <p id="error-msg" class="error hidden" aria-live="polite">
+                El nombre es obligatorio
+            </p>
+        </form>
+    </div>
+
+    <!-- MENU MOBILE -->
+    <div id="mobile-menu" class="mobile-menu hidden">
+        <button id="close-menu"><ion-icon class="btn-close" name="close-outline"></ion-icon></button>
+
+        <ul class="mobile-menu-links">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Productos</a></li>
+            <li><a href="#" id="open-cart-mobile">Carrito</a></li>
+        </ul>
+    </div>
+
+
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
 </body>
 </html>
