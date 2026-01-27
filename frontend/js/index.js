@@ -24,6 +24,20 @@ const userName = document.querySelector('.user-name');
 document.body.style.overflow = "hidden";
 
 
+const user = localStorage.getItem('username'); 
+
+const desktopUser = document.querySelector(".nav-links .user-name");
+const mobileUser = document.querySelector(".mobile-menu-links .user-name");
+
+function renderUserName() {
+  if (!user) return;
+
+  desktopUser.textContent = user;
+  mobileUser.textContent = user;
+}
+
+
+
 // Open and closed cart 
 const menuBtn = document.getElementById("menu-btn");
 const mobileMenu = document.getElementById("mobile-menu");
@@ -81,7 +95,7 @@ function insertProducts(list) {
                     <p class="card-name">${product.name}</p>
                     <p class="card-description">${product.description}</p>
                     <p class="card-price">$${product.price}</p>
-                    <button class="btn"><ion-icon name="cart-outline"></ion-icon>Agregar al carrito</button>
+                    <button class="btn"><ion-icon class="icon-add-cart" name="cart-outline"></ion-icon>Agregar al carrito</button>
                 </div>`;
     });
 
@@ -358,6 +372,7 @@ function init() {
     renderCart();
     sortProducts({buttonId: 'order-name', key: 'name', order: 'asc'});
     sortProducts({buttonId: 'order-price', key: 'price', order: 'desc'});
+    renderUserName();
 }
 
 init();
