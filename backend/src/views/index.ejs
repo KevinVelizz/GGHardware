@@ -12,7 +12,7 @@
                 <% products.forEach(prod=> { %>
 
                     <li>
-                        <img src="<%= prod.image %>" alt="Imagen <%= prod.name %>">
+                        <img src="/img/<%= prod.image %>" alt="Imagen <%= prod.name %>">
                         <p>Id: <%= prod.id %> / Nombre: <%= prod.name %>/ <strong>Precio: <%= prod.price %></strong>
                         </p>
                     </li>

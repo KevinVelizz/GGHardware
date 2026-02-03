@@ -1,6 +1,14 @@
+/*********************************
+ * VARIABLES GLOBALES
+ *********************************/
 let products = [];
 let cart = [];
 let listFilterProducts = [];
+document.body.style.overflow = "hidden";
+
+/*********************************
+ * ELEMENTOS DOM
+ *********************************/
 const listProducts = document.getElementById('list-products');
 const btnOrderPrice = document.getElementById('order-price');
 
@@ -13,7 +21,9 @@ const btnEmptyCart = document.querySelector('.btn-empty-cart');
 const btnFinishBuy = document.querySelector('.btn-finish-buy');
 const total = document.querySelector('.total');
 
-// MODAL
+/*********************************
+ * MODAL NOMBRE
+ *********************************/
 const modal = document.getElementById("name-modal");
 const formA = document.getElementById("name-form");
 const input = document.getElementById("username-input");
@@ -21,22 +31,82 @@ const errorMsg = document.getElementById("error-msg");
 
 const userName = document.querySelector('.user-name');
 
-document.body.style.overflow = "hidden";
-
-
 const user = localStorage.getItem('username'); 
 
 const desktopUser = document.querySelector(".nav-links .user-name");
 const mobileUser = document.querySelector(".mobile-menu-links .user-name");
 
-function renderUserName() {
-  if (!user) return;
+/*********************************
+ * MODALES COMPRA
+ *********************************/
+const checkoutModal = document.getElementById("checkout-modal");
+const successModal = document.getElementById("success-modal");
 
-  desktopUser.textContent = user;
-  mobileUser.textContent = user;
+const confirmBuyBtn = document.getElementById("confirm-buy");
+const cancelBuyBtn = document.getElementById("cancel-buy");
+const successOkBtn = document.getElementById("success-ok");
+
+/*********************************
+ * USUARIO
+ *********************************/
+function renderUserName() {
+    if (!user) return;
+
+    desktopUser.textContent = user;
+    mobileUser.textContent = user;
 }
 
+dropdown.addEventListener("click", (e) => {
+    const finishBtn = e.target.closest(".btn-finish-buy");
+    if (!finishBtn) return;
 
+    if (cart.length === 0) return;
+
+    checkoutModal.classList.remove("hidden");
+    checkoutModal.classList.add("active");
+    document.body.classList.add("no-scroll");
+});
+
+cancelBuyBtn.addEventListener("click", () => {
+    checkoutModal.classList.add("hidden");
+    document.body.classList.remove("no-scroll");
+});
+
+confirmBuyBtn.addEventListener("click", () => {
+    checkoutModal.classList.add("hidden");
+    successModal.classList.remove("hidden");
+    successModal.classList.add('active');
+    document.body.classList.remove("no-scroll");
+});
+
+
+successOkBtn.addEventListener("click", () => {
+    // Cerrar modal éxito
+    successModal.classList.add("hidden");
+    successModal.classList.remove("active");
+
+    // Reset usuario
+    localStorage.removeItem("username");
+
+    desktopUser.textContent = "";
+    mobileUser.textContent = "";
+    userName.textContent = "";
+
+    cart = [];
+    dropdown.style.display = 'none';
+    renderCart();
+
+    // Reset scroll
+    document.body.classList.remove("no-scroll");
+    document.body.style.overflow = "hidden";
+
+    // Reabrir modal nombre correctamente
+    modal.style.display = "flex";
+    modal.classList.add("active");
+
+    input.value = "";
+    input.focus();
+});
 
 // Open and closed cart 
 const menuBtn = document.getElementById("menu-btn");
@@ -319,21 +389,25 @@ cartBtn.addEventListener('click', (e) => {
 ///////////////////////////////////
 //////////// modal ////////////////
 
-// Mostrar modal si no hay nombre
-const savedName = localStorage.getItem("username");
-
-if (!savedName) {
-    openModal();
-} else {
-    
-    userName.textContent = localStorage.getItem("username");
-    closeModal(true);
+function openModal() {
+    modal.style.display = "flex";
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+    input.focus();
 }
 
-// Abrir modal
-function openModal() {
-    modal.classList.add("active");
-    input.focus();
+
+// Mostrar modal si no hay nombre
+function modalName() {
+    let savedName = localStorage.getItem("username");
+
+    if (!savedName) {
+        openModal();
+    } else {
+        
+        userName.textContent = localStorage.getItem("username");
+        closeModal(true);
+    }
 }
 
 // Cerrar modal con animación
@@ -366,6 +440,7 @@ formA.addEventListener("submit", (e) => {
     closeModal();
 });
 
+
 function init() {
     getProducts();
     insertProducts(listFilterProducts); 
@@ -373,6 +448,7 @@ function init() {
     sortProducts({buttonId: 'order-name', key: 'name', order: 'asc'});
     sortProducts({buttonId: 'order-price', key: 'price', order: 'desc'});
     renderUserName();
+    modalName();
 }
 
 init();

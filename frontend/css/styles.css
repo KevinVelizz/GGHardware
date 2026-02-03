@@ -606,3 +606,51 @@ footer {
 body.no-scroll {
     overflow: hidden !important;
 }
+
+/* botones de acción modal */
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.modal-actions button {
+    flex: 1;
+    padding: 1rem;
+    border-radius: 6px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+
+.btn-confirm {
+    background-color: #00ff88;
+    color: #000;
+}
+
+.btn-confirm:hover {
+    background-color: #00cc6e;
+}
+
+.btn-cancel {
+    background-color: #e53935;
+    color: white;
+}
+
+.btn-cancel:hover {
+    background-color: #c62828;
+}
+
+#success-modal .modal h2 {
+    color: #00ff88;
+    margin-bottom: 1rem;
+}
+
+.modal-overlay {
+    cursor: pointer;
+}
+
+.modal {
+    cursor: default;
+}

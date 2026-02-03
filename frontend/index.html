@@ -123,6 +123,28 @@
         </ul>
     </div>
 
+    <!-- MODAL FINALIZAR COMPRA -->
+    <div id="checkout-modal" class="modal-overlay hidden" role="dialog" aria-modal="true">
+        <div class="modal">
+            <h2>¿Confirmar compra?</h2>
+            <p>¿Deseás finalizar la compra?</p>
+
+            <div class="modal-actions">
+                <button id="confirm-buy" class="btn-confirm">Aceptar</button>
+                <button id="cancel-buy" class="btn-cancel">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+        <!-- MODAL COMPRA REALIZADA -->
+    <div id="success-modal" class="modal-overlay hidden" role="dialog" aria-modal="true">
+        <div class="modal">
+            <h2>¡Compra realizada!</h2>
+            <p>Gracias por tu compra.</p>
+
+            <button id="success-ok">Aceptar</button>
+        </div>
+    </div>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
