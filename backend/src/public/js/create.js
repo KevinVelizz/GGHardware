@@ -32,7 +32,6 @@ altaProducts_form.addEventListener("submit", async (event) => {
 
             let result = await response.json();
             console.log(result.message);
-            console.log(result.productId);
             alert(result.message);
 
         } else {

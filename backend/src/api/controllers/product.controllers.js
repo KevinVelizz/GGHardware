@@ -86,14 +86,16 @@ export const createNewProduct = async (req, res) => {
             });
         }
 
-        if (isNaN(stock) || isNaN(active) || isNaN(price)) {
+        let activeNum = parseInt(active);
+
+        if (isNaN(stock) || isNaN(price)) {
             return res.status(400).json({
                 ok: false,
                 message: "Los campos stock, active y price deben ser números"
             });
         }
 
-        const [result] = await Products.insertNewProduct(name, price, description, stock, active, image);
+        const [result] = await Products.insertNewProduct(name, price, description, stock, activeNum, image);
 
         console.log(result);
 

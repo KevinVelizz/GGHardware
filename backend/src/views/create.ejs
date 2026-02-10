@@ -22,8 +22,19 @@
             <label for="name">Nombre</label>
             <input type="text" name="name" id="name" required>
 
+            <label for="description">Description</label>
+            <input type="text" name="description" id="description" required>
+
             <label for="price">Precio</label>
             <input type="number" name="price" id="price" required>
+
+            <label for="stock">Stock</label>
+            <input type="number" name="stock" id="stock" required>
+
+            <select name="active" id="active" required>
+                <option value="1">activado</option>
+                <option value="0">desactivado</option>
+            </select>
 
             <input type="submit" value="Crear producto">
         </form>

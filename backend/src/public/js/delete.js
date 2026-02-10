@@ -26,11 +26,11 @@ getProduct_form.addEventListener("submit", async (event) => {
 
 
         // Optimizacion 3: Validacion basica
-        if (!idProd) {
+        if (!id) {
             throw new Error("Por favor ingresa un id de producto valido")
         }
 
-        let response = await fetch(`${url}/products/${idProd}`);
+        let response = await fetch(`${url}/products/${id}`);
 
         // Optimizacion 4: Manejamos el error en una posible respuesta no exitosa
         if (!response.ok) {
@@ -65,11 +65,11 @@ function showProducts(producto) {
 
     let htmlProductos = `
     <li class="li-listados productos-listados">
-        <div class="li-listados_datos">
+        <div class="product">
+            <img src="/img/${producto.image}" alt="${producto.nombre}" class="img-listados">
             <p>Id: ${producto.id} / Nombre: ${producto.name} / <strong>Precio: $${producto.price}</strong></p>
-            <img src="${producto.image}" alt="${producto.nombre}" class="img-listados">
         </div>
-        <div class="li-listados_boton">
+        <div class="btnUpdate">
             <input class="listados_boton" id="deleteProduct_button" type="button" value="Eliminar producto">
         </div>
     </li>

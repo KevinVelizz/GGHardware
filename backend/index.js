@@ -4,6 +4,7 @@ import environments from "./src/api/config/environments.js";
 import cors from "cors";
 import { productRoutes, viewRoutes } from "./src/api/routes/index.js";
 import { join, __dirname } from "./src/api/utils/index.js";
+import Session from "express-session";
 
 const app = express();
 const PORT = environments.port;

@@ -49,3 +49,11 @@ h1 {
     flex-wrap: wrap;
     gap: 20px;
 }
+
+.btnUpdate {
+    margin-top: 10px;
+}
+
+ul {
+    padding: 0;
+}

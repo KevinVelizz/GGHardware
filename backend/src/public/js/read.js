@@ -57,8 +57,7 @@ function showError(message) {
     contenedorProductos.innerHTML = `
                 <div class="mensaje-error">
                     <p>
-                        <strong>Error:</strong>
-                        <span>${message}</span>
+                        <span>${message}.</span>
                     </p>
                 </div>
             `;

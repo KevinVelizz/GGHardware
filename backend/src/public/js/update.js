@@ -9,7 +9,13 @@ getProduct_form.addEventListener("submit", async (event) => {
     event.preventDefault(); // Evitamos el envio por defecto del formulario
 
 
+
     try {
+
+        // LIMPIAMOS ESTADO ANTERIOR
+        getId_list.innerHTML = "";
+        updateForm_container.innerHTML = "";
+
         // Optimizacion 1: Mostramos un estado de carga
         getId_list.innerHTML = "<p>Cargando producto...</p>";
 
@@ -31,7 +37,7 @@ getProduct_form.addEventListener("submit", async (event) => {
             throw new Error("Por favor ingresa un id de producto valido");
         }
 
-        let response = await fetch(`${url}/products/${idProd}`);
+        let response = await fetch(`${url}/products/${id}`);
 
         // Optimizacion 4: Manejamos el error en una posible respuesta no exitosa
         if (!response.ok) {
@@ -64,11 +70,11 @@ function showProducts(producto) {
 
     let htmlProductos = `
     <li class="products">
-        <div class="li-listados_datos">
+        <div class="product">
+            <img src="/img/${producto.image}" alt="${producto.nombre}" class="img-listados">
             <p>Id: ${producto.id} / Nombre: ${producto.name} / <strong>Precio: $${producto.price}</strong></p>
-            <img src="${producto.image}" alt="${producto.nombre}" class="img-listados">
         </div>
-        <div class="li-listados_boton">
+        <div class="btnUpdate">
             <input class="listados_boton" id="updateProduct_button" type="button" value="Actualizar producto">
         </div>
     </li>
@@ -110,8 +116,19 @@ function formPut(event, producto) {
                 <label for="name">Nombre</label>
                 <input type="text" name="name" id="name" value="${producto.name}" required>
 
+                <label for="description">Description</label>
+                <input type="text" name="description" id="description" value="${producto.description}" required>
+
                 <label for="price">Precio</label>
                 <input type="number" name="price" id="price" value="${producto.price}" required>
+
+                <label for="stock">Stock</label>
+                <input type="number" name="stock" id="stock" value="${producto.stock}" required>
+
+                <select name="active" id="active" required>
+                    <option value="1">Activado</option>
+                    <option value="0">Desactivado</option>
+                </select>
 
                 <input type="submit" value="Actualizar producto">
             </form>
