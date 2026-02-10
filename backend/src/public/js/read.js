@@ -1,7 +1,7 @@
 // Selección de elementos del DOM.
 let contenedorProductos = document.getElementById('section-products');
 let getProduct = document.getElementById('getProduct');
-const url = "http://localhost:3000/api";
+const url = "http://localhost:3000/api/products/";
 
 getProduct.addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevenimos el envio por defecto del formulario.
@@ -16,13 +16,13 @@ getProduct.addEventListener('submit', async (event) => {
         let data = Object.fromEntries(formData.entries());
         console.log(data); // { id: '2' }
 
-        let id = data.IdProduct; // Ahora ya tenemos guardado en una variable el valor del campo del formulario
+        let id = data.id; // Ahora ya tenemos guardado en una variable el valor del campo del formulario
         console.log(id);
 
-        console.log(`Realizando una peticion GET a la url ${url}/products/${id}`);
+        console.log(`Realizando una peticion GET a la url ${url}${id}`);
 
         // Enviamos en una peticion GET el id pegado a la url
-        let response = await fetch(`${url}/products/${id}`);
+        let response = await fetch(`${url}${id}`);
 
         let datos = await response.json();
 
@@ -44,10 +44,10 @@ getProduct.addEventListener('submit', async (event) => {
 
 function showProducts(producto) {
     let htmlProducto = `
-                    <div class="product">
-                        <img src="${producto.image}" alt="${producto.name}">
+                    <li class="product">
+                        <img src="/img/${producto.image}" alt="${producto.name}">
                         <p>Id: ${producto.id} / Nombre: ${producto.name} / <strong>Precio: ${producto.price}</strong></p>
-                    </div>
+                    </li>
                 `;
 
     contenedorProductos.innerHTML = htmlProducto;

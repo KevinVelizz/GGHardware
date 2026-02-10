@@ -21,6 +21,7 @@ app.set("views", join(__dirname, "src/views"));
 
 app.use('/img', express.static(join(__dirname, 'src/public/img')));
 app.use('/css', express.static(join(__dirname, 'src/public/css')));
+app.use('/js', express.static(join(__dirname, 'src/public/js')));
 
 // ENDPOINTS
 // Get -> traer todos los productos de la base de datos.
