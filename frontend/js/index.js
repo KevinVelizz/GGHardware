@@ -91,6 +91,29 @@ successOkBtn.addEventListener("click", () => {
     desktopUser.textContent = "";
     mobileUser.textContent = "";
     userName.textContent = "";
+    const { jsPDF } = window.jspdf;
+
+    const doc = new jsPDF();
+
+    let y = 10;
+    doc.setFontSize(16);
+
+    doc.text("GGHardware-ticket de compra: ", 10, y);
+
+    y += 10;
+
+    doc.setFontSize(12);
+
+    cart.forEach(product => {
+        
+        doc.text(`${product.name} - ${product.price}`, 10, y);
+
+        y += 7;
+    });
+
+    doc.text(`${total.textContent}`, 10, y);
+
+    doc.save('ticket.pdf');
 
     cart = [];
     dropdown.style.display = 'none';
@@ -298,6 +321,7 @@ function renderCart() {
 
     total.style.display = 'block';
     total.textContent = `Total: $${totalAmount}`;
+    console.log(total.textContent);
 }
 
 function decreaseProduct(productId) {

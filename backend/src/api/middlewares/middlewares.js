@@ -22,7 +22,17 @@ const validateId = (req, res, next) => {
     next();
 }
 
+const requireLogin = (req, res, next) => {
+   
+    if(!req.session.user) {
+        return res.redirect("/login");
+    }
+
+    next(); // Sin next, la peticion nunca llega a la respuesta (res)
+}
+
 export {
     loggerUrl,
-    validateId
+    validateId,
+    requireLogin
 }

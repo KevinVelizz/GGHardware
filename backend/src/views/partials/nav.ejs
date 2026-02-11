@@ -33,14 +33,8 @@
         </li>
     </ul>
 
-    <!-- Rutas de la API Rest-->
-    <ul class="listado-nav listado-api">
-        <a href="/api/products/">
-            <li class="links-header"><span>API Reference productos</span></li>
-        </a>
-
-        <a href="/api/products/:id">
-            <li class="links-header"><span>API Reference productos id</span></li>
-        </a>
-    </ul>
+     <!-- Boton para destruir sesion y redirigir a /login -->
+    <form action="/logout" id="logout" method="POST">
+        <input type="submit" value="Cerrar sesion">
+    </form>
 </header>
