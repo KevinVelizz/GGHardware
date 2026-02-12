@@ -158,7 +158,7 @@ async function actualizarProducto(event) {
             alert("Todos los campos son obligatorios");
             return;
         }
-        let response = await fetch(`${url}/products`, {
+        let response = await fetch(`${url}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

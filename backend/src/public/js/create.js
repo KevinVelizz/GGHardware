@@ -1,4 +1,4 @@
-const url = "https://gghardware-production.up.railway.app/api/products";
+const url = "https://gghardware-production.up.railway.app/api";
 const altaProducts_form = document.getElementById("altaProducts-form");
 const formUser = document.getElementById("formCreateUser");
 
@@ -20,7 +20,7 @@ altaProducts_form.addEventListener("submit", async (event) => {
             return;
         }
 
-        let response = await fetch(`${url}`, {
+        let response = await fetch(`${url}/products`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

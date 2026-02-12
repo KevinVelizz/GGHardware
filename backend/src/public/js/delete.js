@@ -97,7 +97,7 @@ function showProducts(producto) {
 
 async function eliminarProducto(id) {
     try {
-        let response = await fetch(`${url}/products/${id}`, {
+        let response = await fetch(`${url}/${id}`, {
             method: "DELETE"
         });
 
