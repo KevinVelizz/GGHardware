@@ -1,4 +1,4 @@
-const url = "http://localhost:3000/api";
+const url = "https://gghardware-production.up.railway.app/api/products";
 
 let getId_list = document.getElementById("getId-list");
 let getProduct_form = document.getElementById("getProduct-form");
@@ -37,7 +37,7 @@ getProduct_form.addEventListener("submit", async (event) => {
             throw new Error("Por favor ingresa un id de producto valido");
         }
 
-        let response = await fetch(`${url}/products/${id}`);
+        let response = await fetch(`${url}/${id}`);
 
         // Optimizacion 4: Manejamos el error en una posible respuesta no exitosa
         if (!response.ok) {

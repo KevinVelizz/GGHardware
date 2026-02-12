@@ -1,7 +1,7 @@
 // Selección de elementos del DOM.
 let contenedorProductos = document.getElementById('section-products');
 let getProduct = document.getElementById('getProduct');
-const url = "http://localhost:3000/api/products/";
+const url = "https://gghardware-production.up.railway.app/api/products";
 
 getProduct.addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevenimos el envio por defecto del formulario.
@@ -22,7 +22,7 @@ getProduct.addEventListener('submit', async (event) => {
         console.log(`Realizando una peticion GET a la url ${url}${id}`);
 
         // Enviamos en una peticion GET el id pegado a la url
-        let response = await fetch(`${url}${id}`);
+        let response = await fetch(`${url}/${id}`);
 
         let datos = await response.json();
 
