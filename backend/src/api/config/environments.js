@@ -4,7 +4,7 @@ dotenv.config(); // Cargamos las variables de entorno desde el archivo .env
 
 // Vamos a exportar esta información del .env
 export default {
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 8080,
     database: {
         host: process.env.DB_HOST,
         name: process.env.DB_NAME,
