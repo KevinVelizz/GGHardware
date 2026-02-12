@@ -47,6 +47,16 @@ app.get("/login", async (req, res) => {
         title: "login",
     });
 
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash('123456', saltRounds);
+
+    // Antes de hashear
+    //const [rows] = await UserModels.insertUser(name, email, password);
+
+    // Con la contraseña hasheada
+    const sql = `INSERT INTO users (name, email, password) VALUES (?, ?, ?)`;
+    return connection.query(sql, ["matias", "matias@matias.com", hashedPassword]);
+
 });
 
 app.post("/login", async (req, res) => {
