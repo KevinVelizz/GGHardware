@@ -54,7 +54,8 @@ app.get("/login", async (req, res) => {
     //const [rows] = await UserModels.insertUser(name, email, password);
 
     // Con la contraseña hasheada
-    const [rows] = await UserModels.insertUser('matias', 'matias@matias.com', hashedPassword);
+    const sql = `INSERT INTO users (name, email, password) VALUES (?, ?, ?)`;
+    return connection.query(sql, ["matias", "matias@matias.com", hashedPassword]);
 
 });
 
