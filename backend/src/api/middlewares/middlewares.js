@@ -18,7 +18,7 @@ const validateId = (req, res, next) => {
 
     // Convertimos el parametro id (originalmente un string porque viene de la url) en un entero decimal
     req.id = parseInt(id, 10);
-
+    console.log(id);
     next();
 }
 

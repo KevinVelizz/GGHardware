@@ -43,6 +43,7 @@ export const getProductById = async (req, res) => {
         // Obtenemos el ID de la consulta(req).
         const { id } = req.params;
 
+        console.log(id);
         // Obtenemos las rows desde models.
         const [rows] = await Products.selectProductFromId(id);
 
