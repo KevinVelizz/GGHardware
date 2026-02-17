@@ -56,6 +56,18 @@ function renderUserName() {
     mobileUser.textContent = user;
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    const cartStorage = localStorage.getItem("cart");
+    if (cartStorage) {
+        cart = JSON.parse(cartStorage);
+    }
+    renderCart();
+});
+
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
 dropdown.addEventListener("click", (e) => {
     const finishBtn = e.target.closest(".btn-finish-buy");
     if (!finishBtn) return;
@@ -151,7 +163,7 @@ closeMenu.addEventListener("click", () => {
 
 ///////////////////////////
 // get products////////////
-const url = "http://localhost:3000/api/products"; // Guardamos en una variable la url de nuestro endpoint
+const url = "https://gghardware-production.up.railway.app/api/products"; // Guardamos en una variable la url de nuestro endpoint
 
 
 
@@ -182,14 +194,40 @@ function insertProducts(list) {
 
     list.forEach(product => {
 
+        let overlayHTML = "";
+        let buttonHTML = "";
+
+        // Producto desactivado
+        if (!product.active) {
+            overlayHTML = `<div class="overlay">NO DISPONIBLE</div>`;
+        }
+        // Producto sin stock
+        else if (product.stock <= 0) {
+            overlayHTML = `<div class="overlay">SIN STOCK</div>`;
+        }
+        // Producto disponible
+        else {
+            buttonHTML = `
+                <button class="btn">
+                    <ion-icon class="icon-add-cart" name="cart-outline"></ion-icon>
+                    Agregar al carrito
+                </button>`;
+        }
+
         htmlList += `
-                <div class="card product" data-product-id="${product.id}">
-                    <img src="http://localhost:3000/img/${product.image}" alt="imagen del producto">
-                    <p class="card-name">${product.name}</p>
-                    <p class="card-description">${product.description}</p>
-                    <p class="card-price">$${product.price}</p>
-                    <button class="btn"><ion-icon class="icon-add-cart" name="cart-outline"></ion-icon>Agregar al carrito</button>
-                </div>`;
+            <li class="card product" data-product-id="${product.id}">
+                
+                <div class="image-container">
+                    <img src="https://gghardware-production.up.railway.app/img/${product.image}" alt="imagen del producto">
+                    ${overlayHTML}
+                </div>
+
+                <p class="card-name">${product.name}</p>
+                <p class="card-description">${product.description}</p>
+                <p class="card-price">$${product.price}</p>
+                ${buttonHTML}
+
+            </li>`;
     });
 
     listProducts.innerHTML = htmlList;
@@ -245,6 +283,7 @@ function addToCart(product) {
         });
     }
 
+    saveCart();
     renderCart();
     console.log(cart);
 }
@@ -258,7 +297,7 @@ function decreaseProduct(productId) {
     } else {
         cart = cart.filter(p => p.id !== productId);
     }
-
+    saveCart();
     renderCart();
 }
 
@@ -292,7 +331,7 @@ function renderCart() {
         console.log(typeof(p.price));
 
         li.innerHTML = `
-            <img src="http://localhost:3000/img/${p.image}" alt="${p.name}">
+            <img src="https://gghardware-production.up.railway.app/img/${p.image}" alt="${p.name}">
             <span class="cart-name">${p.name}</span>
             <span class="cart-price">$${p.price}</span>
         
@@ -325,16 +364,16 @@ function renderCart() {
 }
 
 function decreaseProduct(productId) {
-  const item = cart.find(p => p.id === productId);
-  if (!item) return;
+    const item = cart.find(p => p.id === productId);
+    if (!item) return;
 
-  if (item.quantity > 1) {
-    item.quantity--;
-  } else {
-    cart = cart.filter(p => p.id !== productId);
-  }
-
-  renderCart();
+    if (item.quantity > 1) {
+        item.quantity--;
+    } else {
+        cart = cart.filter(p => p.id !== productId);
+    }
+    saveCart(); 
+    renderCart();
 }
 
 
@@ -399,6 +438,7 @@ function sortProducts({ buttonId, key, order = 'asc' }) {
 btnEmptyCart.addEventListener('click', () => {
 
     cart = [];
+    saveCart();
     renderCart();
     btnEmptyCart.style.display = 'none';
 
