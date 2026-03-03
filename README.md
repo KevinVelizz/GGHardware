@@ -32,17 +32,14 @@ El proyecto sigue el modelo **Cliente-Servidor**, aplicando el patrón MVC (Mode
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![EJS](https://img.shields.io/badge/EJS-8BC34A?style=for-the-badge&logo=ejs&logoColor=black)
 
 
 ### ⚙️ Backend
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
-![dotenv](https://img.shields.io/badge/dotenv-8DD6F9?style=for-the-badge&logo=dotenv&logoColor=black)
-![Express Session](https://img.shields.io/badge/express--session-000000?style=for-the-badge&logo=express&logoColor=white)
-![CORS](https://img.shields.io/badge/CORS-000000?style=for-the-badge&logo=web&logoColor=white)
-![Nodemon](https://img.shields.io/badge/Nodemon-76D04B?style=for-the-badge&logo=nodemon&logoColor=white)
 ![bcrypt](https://img.shields.io/badge/bcrypt-003B57?style=for-the-badge&logo=security&logoColor=white)
+![EJS](https://img.shields.io/badge/EJS-8BC34A?style=for-the-badge&logo=ejs&logoColor=black)
+
 
 ### 🎨 Desarrollo Frontend
 - Estructura semántica con HTML
@@ -86,3 +83,23 @@ El proyecto sigue el modelo **Cliente-Servidor**, aplicando el patrón MVC (Mode
 ## 📎 Conclusión
 
 Programación III constituye una materia clave en la formación técnica del estudiante, ya que integra conocimientos adquiridos en asignaturas previas y los aplica en un entorno tecnológico actual, alineado con las demandas del mercado laboral.
+
+## 🚀 Deploy del Proyecto
+### Backend – Railway
+El servidor desarrollado con Node.js + Express y la base de datos MySQL se despliegan en:
+
+🔗 Railway
+- Hosting del servidor backend
+- Variables de entorno configuradas en la plataforma
+- Conexión a base de datos MySQL en la nube
+- Deploy automático desde repositorio GitHub
+- Esto permite que la API esté disponible públicamente y accesible desde cualquier cliente.
+
+### Frontend – Vercel
+El frontend del proyecto se despliega en:
+
+🔗 Vercel
+- Deploy automático desde GitHub
+- Hosting rápido y optimizado
+- Entorno ideal para aplicaciones frontend
+- Configuración sencilla de variables de entorno
