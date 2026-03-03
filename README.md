@@ -95,6 +95,8 @@ El servidor desarrollado con Node.js + Express y la base de datos MySQL se despl
 - Deploy automático desde repositorio GitHub
 - Esto permite que la API esté disponible públicamente y accesible desde cualquier cliente.
 
+Link: https://gghardware-production.up.railway.app/login
+
 ### Frontend – Vercel
 El frontend del proyecto se despliega en:
 
@@ -103,3 +105,5 @@ El frontend del proyecto se despliega en:
 - Hosting rápido y optimizado
 - Entorno ideal para aplicaciones frontend
 - Configuración sencilla de variables de entorno
+
+Link: https://gg-hardware.vercel.app/
