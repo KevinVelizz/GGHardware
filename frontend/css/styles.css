@@ -248,11 +248,11 @@ nav {
 
 /* CARDS */
 .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 2rem;
+    justify-content: center;
 }
-
 
 /* CARD */
 .card {
@@ -318,6 +318,7 @@ nav {
     display: flex;
     margin: 4rem 0 2rem 0;
     column-gap: 2rem;
+    justify-content: center;
 }
 
 .container-button-cart {
@@ -591,9 +592,6 @@ footer {
         padding-top: 10.7rem;
     }
     
-    .container-btns {
-        justify-content: center;
-    }
 
     .cards {
         display: flex;
@@ -622,10 +620,6 @@ footer {
 /* LAPTOP */ 
 @media (max-width: 900px) {
 
-    .container-btns {
-        justify-content: center;
-    }
-    
     .cards {
         display: flex;
         flex-wrap: wrap;
