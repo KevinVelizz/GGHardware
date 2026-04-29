@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "name": "Intel Core i5 12400F",
+        "description": "Procesador Intel 12va gen 6 nucleos",
+        "price": 210000,
+        "stock": 15,
+        "image": "i5.png",
+        "active": 0
+    },
+    {
+        "id": 2,
+        "name": "AMD Ryzen 5 5600X",
+        "description": "Procesador AMD 6 nucleos y 12 hilos",
+        "price": 195000,
+        "stock": 10,
+        "image": "ryzen5.png",
+        "active": 1
+    },
+    {
+        "id": 3,
+        "name": "ASUS B550M-A",
+        "description": "Motherboard ASUS B550 socket AM4",
+        "price": 160000,
+        "stock": 8,
+        "image": "placamadre.png",
+        "active": 1
+    },
+    {
+        "id": 4,
+        "name": "MSI RTX 3060",
+        "description": "Placa de video NVIDIA RTX 3060 12GB",
+        "price": 420000,
+        "stock": 0,
+        "image": "placavideo.png",
+        "active": 1
+    },
+    {
+        "id": 5,
+        "name": "Kingston Fury 16GB",
+        "description": "Memoria RAM DDR4 16GB 3200MHz",
+        "price": 85000,
+        "stock": 25,
+        "image": "memoriaram.png",
+        "active": 1
+    },
+    {
+        "id": 6,
+        "name": "Corsair CX650",
+        "description": "Fuente 650W 80 Plus Bronze",
+        "price": 110000,
+        "stock": 12,
+        "image": "fuente.png",
+        "active": 1
+    },
+    {
+        "id": 7,
+        "name": "WD Blue 1TB SSD",
+        "description": "Disco solido SSD NVMe 1TB",
+        "price": 130000,
+        "stock": 20,
+        "image": "discorigido.png",
+        "active": 1
+    },
+    {
+        "id": 8,
+        "name": "Cooler Master Hyper 212",
+        "description": "Cooler CPU por aire",
+        "price": 75000,
+        "stock": 18,
+        "image": "cooler.png",
+        "active": 1
+    }
+]

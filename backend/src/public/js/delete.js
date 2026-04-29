@@ -1,4 +1,5 @@
-const url = "https://gghardware-production.up.railway.app/api/products";
+//const url = "https://gghardware-production.up.railway.app/api/products";
+const url = "http://localhost:8080/api/products";
 let getId_lista = document.getElementById("getId-list");
 let getProduct_form = document.getElementById("getProduct-form");
 let updateForm_container = document.getElementById("updateForm-container");

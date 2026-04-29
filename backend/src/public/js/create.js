@@ -1,4 +1,5 @@
-const url = "https://gghardware-production.up.railway.app/api";
+//const url = "https://gghardware-production.up.railway.app/api";
+const url = "http://localhost:8080/api/products";
 const altaProducts_form = document.getElementById("altaProducts-form");
 const formUser = document.getElementById("formCreateUser");
 

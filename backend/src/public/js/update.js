@@ -1,4 +1,5 @@
-const url = "https://gghardware-production.up.railway.app/api/products";
+//const url = "https://gghardware-production.up.railway.app/api/products";
+const url = "http://localhost:8080/api/products";
 
 let getId_list = document.getElementById("getId-list");
 let getProduct_form = document.getElementById("getProduct-form");
@@ -7,8 +8,6 @@ let updateForm_container = document.getElementById("updateForm-container");
 getProduct_form.addEventListener("submit", async (event) => {
 
     event.preventDefault(); // Evitamos el envio por defecto del formulario
-
-
 
     try {
 

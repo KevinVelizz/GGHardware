@@ -163,8 +163,8 @@ closeMenu.addEventListener("click", () => {
 
 ///////////////////////////
 // get products////////////
-const url = "https://gghardware-production.up.railway.app/api/products"; // Guardamos en una variable la url de nuestro endpoint
-
+//const url = "https://gghardware-production.up.railway.app/api/products"; // Guardamos en una variable la url de nuestro endpoint
+const url = "http://localhost:8080/api/products";
 
 
 async function getProducts() {
@@ -185,6 +185,10 @@ async function getProducts() {
     }catch(error) {
 
         console.error(error);
+        const result = await fetch('../data/productos.json');
+        const data = await result.json();
+
+        products = data;
     }
 }
 
@@ -218,7 +222,7 @@ function insertProducts(list) {
             <li class="card product" data-product-id="${product.id}">
                 
                 <div class="image-container">
-                    <img src="https://gghardware-production.up.railway.app/img/${product.image}" alt="imagen del producto">
+                    <img src="http://localhost:8080/img/${product.image}" alt="imagen del producto">
                     ${overlayHTML}
                 </div>
 
@@ -331,7 +335,7 @@ function renderCart() {
         console.log(typeof(p.price));
 
         li.innerHTML = `
-            <img src="https://gghardware-production.up.railway.app/img/${p.image}" alt="${p.name}">
+            <img src="http://localhost:8080/img/${p.image}" alt="${p.name}">
             <span class="cart-name">${p.name}</span>
             <span class="cart-price">$${p.price}</span>
         

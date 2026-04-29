@@ -1,7 +1,8 @@
 // Selección de elementos del DOM.
 let contenedorProductos = document.getElementById('section-products');
 let getProduct = document.getElementById('getProduct');
-const url = "https://gghardware-production.up.railway.app/api/products";
+//const url = "https://gghardware-production.up.railway.app/api/products";
+const url = "http://localhost:8080/api/products";
 
 getProduct.addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevenimos el envio por defecto del formulario.
